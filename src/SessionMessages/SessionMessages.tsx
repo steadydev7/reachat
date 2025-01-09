@@ -9,7 +9,7 @@ import React, {
 import { SessionEmpty } from './SessionEmpty';
 import { ChatContext } from '@/ChatContext';
 import { Button, cn, useInfinityList } from 'reablocks';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { Conversation } from '@/types';
 import { SessionMessage } from './SessionMessage/SessionMessage';
 
@@ -117,12 +117,12 @@ export const SessionMessages: React.FC<SessionMessagesProps> = ({
           {children
             ? children(convosToRender)
             : convosToRender.map((conversation, index) => (
-                <SessionMessage
-                  key={conversation.id}
-                  conversation={conversation}
-                  isLast={index === conversation.length - 1}
-                />
-              ))}
+              <SessionMessage
+                key={conversation.id}
+                conversation={conversation}
+                isLast={index === conversation.length - 1}
+              />
+            ))}
         </motion.div>
       </AnimatePresence>
     </div>

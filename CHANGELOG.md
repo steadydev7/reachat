@@ -1,3 +1,6 @@
+# 1.5.1
+- [chore] Update motion lib and fix broken images
+
 # 1.5.0
 - [feature] add masonary grid on image uploads
 
