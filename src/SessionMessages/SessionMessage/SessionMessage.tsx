@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useContext } from 'react';
 import { ChatContext } from '@/ChatContext';
 import { Card, cn, Divider } from 'reablocks';
 import { Conversation } from '@/types';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { MessageQuestion } from './MessageQuestion';
 import { MessageResponse } from './MessageResponse';
 import { MessageSources } from './MessageSources';

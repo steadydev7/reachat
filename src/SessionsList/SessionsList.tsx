@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useContext } from 'react';
 import { List, cn } from 'reablocks';
 import { ChatContext } from '@/ChatContext';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export const SessionsList: FC<PropsWithChildren> = ({ children }) => {
   const { theme, isCompact, activeSessionId } = useContext(ChatContext);
