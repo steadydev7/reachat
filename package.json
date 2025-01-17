@@ -42,7 +42,7 @@
     "katex": "^0.16.11",
     "mdast-util-find-and-replace": "^3.0.1",
     "motion": "^11.16.3",
-    "reablocks": "^8.4.7",
+    "reablocks": "^8.7.4",
     "react-markdown": "^9.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "reakeys": "^2.0.3",
