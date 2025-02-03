@@ -1,7 +1,14 @@
 import { FC } from 'react';
 
 interface ImageFileRendererProps {
+  /**
+   * Name of the file.
+   */
   name?: string;
+
+  /**
+   * URL of the file.
+   */
   url: string;
 }
 

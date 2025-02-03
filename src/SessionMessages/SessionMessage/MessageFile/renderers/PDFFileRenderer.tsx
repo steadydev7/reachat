@@ -1,8 +1,19 @@
 import { FC, ReactElement } from 'react';
 
 interface PDFFileRendererProps {
+  /**
+   * Name of the file.
+   */
   name?: string;
+
+  /**
+   * URL of the file.
+   */
   url: string;
+
+  /**
+   * Icon to for file type.
+   */
   fileIcon?: ReactElement;
 }
 

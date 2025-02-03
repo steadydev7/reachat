@@ -4,10 +4,10 @@ import { ChatContext } from '@/ChatContext';
 import { cn } from 'reablocks';
 import FileIcon from '@/assets/file.svg?react';
 
-const DefaultFileRenderer = lazy(() => import('../../../renderers/DefaultFileRenderer'));
-const CSVFileRenderer = lazy(() => import('../../../renderers/CSVFileRenderer'));
-const ImageFileRenderer = lazy(() => import('../../../renderers/ImageFileRenderer'));
-const PDFFileRenderer = lazy(() => import('../../../renderers/PDFFileRenderer'));
+const DefaultFileRenderer = lazy(() => import('./renderers/DefaultFileRenderer'));
+const CSVFileRenderer = lazy(() => import('./renderers/CSVFileRenderer'));
+const ImageFileRenderer = lazy(() => import('./renderers/ImageFileRenderer'));
+const PDFFileRenderer = lazy(() => import('./renderers/PDFFileRenderer'));
 
 const FILE_TYPE_RENDERER_MAP: { [key: string]: FC<any> } = {
   'image/': ImageFileRenderer,
@@ -39,6 +39,7 @@ export const MessageFile: FC<MessageFileProps> = ({
 }) => {
   const { theme } = useContext(ChatContext);
 
+  // Based on the file type, we will render a specific file renderer.
   const FileRenderer = useMemo(() => {
     const Renderer =
       Object.keys(FILE_TYPE_RENDERER_MAP).find((key) => type?.startsWith(key)) ??

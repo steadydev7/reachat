@@ -3,10 +3,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { parseCSV } from '@/utils/parseCSV';
 import DownloadIcon from '@/assets/download.svg?react';
 import PlaceholderIcon from '@/assets/copy.svg?react';
+import { IconButton } from 'reablocks';
 
 interface CSVFileRendererProps {
+  /**
+   * Name of the file.
+   */
   name?: string;
+
+  /**
+   * URL of the file.
+   */
   url: string;
+
+  /**
+   * Icon to for file type.
+   */
   fileIcon?: ReactElement;
 }
 
@@ -114,11 +126,11 @@ const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
       <div className="flex justify-between items-center gap-4">
         <div className="csv-icon flex items-center">
           {fileIcon}
-          {name && <figcaption className="file-name">{name}</figcaption>}
+          {name && <figcaption className="ml-1">{name}</figcaption>}
         </div>
         <div className="csv-icon flex items-center gap-6">
-          <DownloadIcon onClick={downloadCSV} className="cursor-pointer" />
-          <PlaceholderIcon onClick={toggleModal} className="cursor-pointer" />
+          <IconButton size="small" variant="text" onClick={downloadCSV}><DownloadIcon /></IconButton>
+          <IconButton size="small" variant="text" onClick={toggleModal}><PlaceholderIcon /></IconButton>
         </div>
       </div>
 

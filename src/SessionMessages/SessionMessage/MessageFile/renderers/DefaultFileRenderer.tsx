@@ -3,9 +3,24 @@ import FileIcon from '@/assets/file.svg?react';
 import { Ellipsis, cn } from 'reablocks';
 
 interface DefaultFileRendererProps {
-  name?: string;
-  url: string;
+  /**
+   * Limit for the name.
+   */
   limit?: number;
+
+  /**
+   * Name of the file.
+   */
+  name?: string;
+
+  /**
+   * URL of the file.
+   */
+  url: string;
+
+  /**
+   * Icon to for file type.
+   */
   fileIcon?: ReactElement;
 }
 
