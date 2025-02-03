@@ -1,3 +1,6 @@
+# 1.6.0
+- [feature] Add CSV Viewer to MessageFiles #42
+
 # 1.5.1
 - [chore] Update motion lib
 - [chore] fix broken images
