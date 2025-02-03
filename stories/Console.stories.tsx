@@ -1101,10 +1101,7 @@ export const CSVPreview = () => {
       className="dark:bg-gray-950 bg-white"
       style={{
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        inset: 0,
         padding: 20,
         margin: 20,
         borderRadius: 5

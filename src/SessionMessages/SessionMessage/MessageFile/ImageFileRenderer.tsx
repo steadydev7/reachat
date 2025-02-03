@@ -9,7 +9,7 @@ interface ImageFileRendererProps {
  * Renderer for image files.
  */
 const ImageFileRenderer: FC<ImageFileRendererProps> = ({ url }) => (
-  <img src={url} alt="Image" className="h-10 w-10" />
+  <img src={url} alt="Image" className="size-10" />
 );
 
 export default ImageFileRenderer;
