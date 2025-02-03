@@ -9,6 +9,12 @@ const CSVFileRenderer = lazy(() => import('./CSVFileRenderer'));
 const ImageFileRenderer = lazy(() => import('./ImageFileRenderer'));
 const PDFFileRenderer = lazy(() => import('./PDFFileRenderer'));
 
+const FILE_TYPE_RENDERER_MAP: { [key: string]: FC<any> } = {
+  'image/': ImageFileRenderer,
+  'text/csv': CSVFileRenderer,
+  'application/pdf': PDFFileRenderer,
+};
+
 export interface MessageFileProps extends ConversationFile {
   /**
    * Icon to show for delete.
@@ -33,17 +39,11 @@ export const MessageFile: FC<MessageFileProps> = ({
 }) => {
   const { theme } = useContext(ChatContext);
 
-  const fileTypeRendererMap: { [key: string]: FC<any> } = {
-    'image/': ImageFileRenderer,
-    'text/csv': CSVFileRenderer,
-    'application/pdf': PDFFileRenderer,
-  };
-
   const FileRenderer = useMemo(() => {
     const Renderer =
-      Object.keys(fileTypeRendererMap).find((key) => type?.startsWith(key)) ??
+      Object.keys(FILE_TYPE_RENDERER_MAP).find((key) => type?.startsWith(key)) ??
       'default';
-    return fileTypeRendererMap[Renderer] || DefaultFileRenderer;
+    return FILE_TYPE_RENDERER_MAP[Renderer] || DefaultFileRenderer;
   }, [type]);
 
   return (
