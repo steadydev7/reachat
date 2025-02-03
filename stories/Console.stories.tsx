@@ -44,7 +44,7 @@ import {
   sessionWithSources,
   sessionsWithFiles,
   sessionsWithPartialConversation,
-  sessionWithDataDocs
+  sessionWithCSVFiles
 } from './examples';
 
 export default {
@@ -1108,7 +1108,7 @@ export const CSVPreview = () => {
       }}
     >
       <Chat
-        sessions={sessionWithDataDocs}
+        sessions={sessionWithCSVFiles}
         activeSessionId="1"
         onDeleteSession={() => alert('delete!')}
       >

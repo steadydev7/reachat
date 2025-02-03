@@ -1,4 +1,3 @@
-import TestCSV from '@/data/sample.csv?raw';
 import { sanitizeSVGCell } from './sanitize';
 
 /**
@@ -7,7 +6,7 @@ import { sanitizeSVGCell } from './sanitize';
  * @param csvString The raw CSV string content to parse.
  * @returns The parsed CSV data as a 2D array of strings.
  */
-export const parseCSV = (csvString: string = TestCSV): string[][] => {
+export const parseCSV = (csvString: string): string[][] => {
   try {
     const rows = csvString.split('\n');
     return rows.map((row) => row.split(',').map((cell) => sanitizeSVGCell(cell)));

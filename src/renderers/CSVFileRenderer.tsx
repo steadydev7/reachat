@@ -14,6 +14,7 @@ interface CSVFileRendererProps {
  * Renderer for CSV files that fetches and displays a snippet of the file data.
  */
 const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [csvData, setCsvData] = useState<string[][]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,10 +23,14 @@ const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
   useEffect(() => {
     const fetchCsvData = async () => {
       try {
-        const data = parseCSV();
+        setIsLoading(true);
+        const response = await fetch(url);
+        const data = parseCSV(await response.text());
         setCsvData(data);
       } catch {
         setError('Failed to load CSV file.');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -106,8 +111,8 @@ const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex justify-between items-center">
-        <div className="csv-icon flex items-center gap-2">
+      <div className="flex justify-between items-center gap-4">
+        <div className="csv-icon flex items-center">
           {fileIcon}
           {name && <figcaption className="file-name">{name}</figcaption>}
         </div>
@@ -118,6 +123,8 @@ const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
       </div>
 
       {error && <div className="error-message">{error}</div>}
+
+      {isLoading && !csvData && <div className="text-text-secondary">Loading...</div>}
 
       <div className="flex justify-between">
         {!error && csvData.length > 0 && renderTable(csvData, 6)}
