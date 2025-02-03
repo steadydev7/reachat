@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useContext } from 'react';
 import { Button, cn } from 'reablocks';
 import { ChatContext } from '@/ChatContext';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import BackIcon from '@/assets/back.svg?react';
 
 export const SessionMessagePanel: FC<PropsWithChildren> = ({ children }) => {

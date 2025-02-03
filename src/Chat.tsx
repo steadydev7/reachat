@@ -13,7 +13,7 @@ import { Session } from './types';
 import { ChatTheme, chatTheme } from './theme';
 import { ChatContext, ChatViewType } from './ChatContext';
 import { PluggableList } from 'react-markdown/lib';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { useDimensions } from './utils/useDimensions';
 import remarkGfm from 'remark-gfm';
 import remarkYoutube from 'remark-youtube';

@@ -1,6 +1,6 @@
 {
   "name": "reachat",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Chat UI for Building LLMs",
   "scripts": {
     "build-storybook": "storybook build",
@@ -39,10 +39,10 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
     "date-fns": "^3.6.0",
-    "framer-motion": "^10.16.16",
     "katex": "^0.16.11",
     "mdast-util-find-and-replace": "^3.0.1",
-    "reablocks": "^8.4.7",
+    "motion": "^11.16.3",
+    "reablocks": "^8.7.4",
     "react-markdown": "^9.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "reakeys": "^2.0.3",

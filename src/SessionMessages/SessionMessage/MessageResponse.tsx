@@ -1,6 +1,6 @@
 import { ChatContext } from '@/ChatContext';
 import { Slot } from '@radix-ui/react-slot';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { cn } from 'reablocks';
 import { FC, PropsWithChildren, useContext } from 'react';
 import { Markdown } from '@/Markdown';
