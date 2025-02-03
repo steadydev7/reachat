@@ -4,10 +4,10 @@ import { ChatContext } from '@/ChatContext';
 import { cn } from 'reablocks';
 import FileIcon from '@/assets/file.svg?react';
 
-const DefaultFileRenderer = lazy(() => import('./DefaultFileRenderer'));
-const CSVFileRenderer = lazy(() => import('./CSVFileRenderer'));
-const ImageFileRenderer = lazy(() => import('./ImageFileRenderer'));
-const PDFFileRenderer = lazy(() => import('./PDFFileRenderer'));
+const DefaultFileRenderer = lazy(() => import('../../../renderers/DefaultFileRenderer'));
+const CSVFileRenderer = lazy(() => import('../../../renderers/CSVFileRenderer'));
+const ImageFileRenderer = lazy(() => import('../../../renderers/ImageFileRenderer'));
+const PDFFileRenderer = lazy(() => import('../../../renderers/PDFFileRenderer'));
 
 const FILE_TYPE_RENDERER_MAP: { [key: string]: FC<any> } = {
   'image/': ImageFileRenderer,
