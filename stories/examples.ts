@@ -176,3 +176,65 @@ export const sessionsWithPartialConversation: Session[] = [
     ]
   }
 ];
+
+export const sessionWithDataDocs: Session[] = [
+  {
+    id: '1',
+    title: 'Session with Partial Conversation',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    conversations: [
+      {
+        id: '1',
+        question: 'Summarize the contents of the CSV.',
+        response: 'The CSV file contains a dataset with the following columns: Name, Age, Occupation, and City.',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        files: [
+          { name: 'sample.csv', size: 1024000, type: 'text/csv' }
+        ]
+      },
+      {
+        id: '2',
+        question: 'How does this data align with this PDF?',
+        response: null, // No response yet
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        files: [
+          { name: 'document.pdf', size: 1024000, type: 'application/pdf' },
+        ]
+      }
+    ]
+  }
+];
+
+export const sessionWithCSVFiles: Session[] = [
+  {
+    id: '1',
+    title: 'Session with Partial Conversation',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    conversations: [
+      {
+        id: '1',
+        question: 'Summarize the contents of the CSV.',
+        response: 'The CSV file contains a dataset with the following columns: Name, HEX, RGB.',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        files: [
+          { name: 'sample.csv', size: 500, type: 'text/csv', url: 'https://gist.githubusercontent.com/RobVanGroenewoud/ba89ad7684df8cefe5c183adb498cc65/raw/f2eec6d2cb89f5d779e16b28ed0dab89d738ba96/sample.csv' }
+        ]
+      },
+      {
+        id: '2',
+        question: 'How does this data align with this PDF?',
+        response: null, // No response yet
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        files: [
+          { name: 'document.pdf', size: 1024000, type: 'application/pdf' },
+        ]
+      }
+    ]
+  }
+];
