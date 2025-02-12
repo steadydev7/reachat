@@ -1,4 +1,12 @@
-import { format, isToday, isYesterday, isThisWeek, isThisMonth, isThisYear, parseISO } from 'date-fns';
+import {
+  format,
+  isToday,
+  isYesterday,
+  isThisWeek,
+  isThisYear,
+  parseISO,
+  differenceInYears
+} from 'date-fns';
 import { Session } from '@/types';
 
 export interface GroupedSessions {
@@ -31,6 +39,7 @@ export function groupSessionsByDate(sessions: Session[]): GroupedSessions[] {
 
   sessions.forEach(session => {
     const createdAt = new Date(session.createdAt);
+    const now = new Date();
 
     if (isToday(createdAt)) {
       if (!grouped['Today']) grouped['Today'] = [];
@@ -41,13 +50,19 @@ export function groupSessionsByDate(sessions: Session[]): GroupedSessions[] {
     } else if (isThisWeek(createdAt)) {
       if (!grouped['Last Week']) grouped['Last Week'] = [];
       grouped['Last Week'].push(session);
-    } else if (isThisMonth(createdAt)) {
-      if (!grouped['Last Month']) grouped['Last Month'] = [];
-      grouped['Last Month'].push(session);
-    } else if (isThisYear(createdAt)) {
-      const monthName = format(createdAt, 'MMMM');
-      if (!grouped[monthName]) grouped[monthName] = [];
-      grouped[monthName].push(session);
+    } else if (differenceInYears(now, createdAt) === 0) {
+      const monthDiff = now.getMonth() - createdAt.getMonth();
+      if (
+        monthDiff === 1 ||
+        (monthDiff === 0 && now.getDate() > createdAt.getDate())
+      ) {
+        if (!grouped['Last Month']) grouped['Last Month'] = [];
+        grouped['Last Month'].push(session);
+      } else {
+        const monthName = format(createdAt, 'MMMM');
+        if (!grouped[monthName]) grouped[monthName] = [];
+        grouped[monthName].push(session);
+      }
     } else {
       if (!grouped['Last Year']) grouped['Last Year'] = [];
       grouped['Last Year'].push(session);
@@ -62,14 +77,15 @@ export function groupSessionsByDate(sessions: Session[]): GroupedSessions[] {
   });
 
   // Sort groups
-  const sortedGroups = Object.keys(grouped).sort((a, b) =>
-    sortOrder.indexOf(a) - sortOrder.indexOf(b)
+  const sortedGroups = Object.keys(grouped).sort(
+    (a, b) => sortOrder.indexOf(a) - sortOrder.indexOf(b)
   );
 
   return sortedGroups.map(heading => ({
     heading,
-    sessions: grouped[heading].sort((a, b) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    sessions: grouped[heading].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
   }));
 }

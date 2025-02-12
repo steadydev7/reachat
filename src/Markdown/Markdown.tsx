@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { PluggableList } from 'react-markdown/lib';
+import { Plugin } from 'unified';
 import { CodeHighlighter } from './CodeHighlighter';
 import { cn } from 'reablocks';
 import { TableComponent, TableHeaderCell, TableDataCell } from './Table';
@@ -12,12 +12,12 @@ interface MarkdownWrapperProps extends PropsWithChildren {
   /**
    * Remark plugins to apply to the markdown content.
    */
-  remarkPlugins?: PluggableList[];
+  remarkPlugins?: Plugin[];
 
   /**
    * Rehype plugins to apply to the markdown content.
    */
-  rehypePlugins?: PluggableList[];
+  rehypePlugins?: Plugin[];
 }
 
 export const Markdown: FC<MarkdownWrapperProps> = ({
@@ -29,8 +29,8 @@ export const Markdown: FC<MarkdownWrapperProps> = ({
 
   return (
     <ReactMarkdown
-      remarkPlugins={remarkPlugins as PluggableList}
-      rehypePlugins={rehypePlugins as PluggableList}
+      remarkPlugins={remarkPlugins as Plugin[]}
+      rehypePlugins={rehypePlugins as Plugin[]}
       components={{
         code: ({ className, ...props }) => (
           <CodeHighlighter
@@ -42,14 +42,39 @@ export const Markdown: FC<MarkdownWrapperProps> = ({
             toolbarClassName={cn(theme.messages.message.markdown.toolbar)}
           />
         ),
-        table: props => <TableComponent {...props} className={cn(theme.messages.message.markdown.table)} />,
-        th: props => <TableHeaderCell {...props} className={cn(theme.messages.message.markdown.th)} />,
-        td: props => <TableDataCell {...props} className={cn(theme.messages.message.markdown.td)} />,
-        a: props => <a {...props} className={cn(theme.messages.message.markdown.a)} />,
-        p: props => <p {...props} className={cn(theme.messages.message.markdown.p)} />,
-        li: props => <li {...props} className={cn(theme.messages.message.markdown.li)} />,
-        ul: props => <ul {...props} className={cn(theme.messages.message.markdown.ul)} />,
-        ol: props => <ol {...props} className={cn(theme.messages.message.markdown.ol)} />
+        table: props => (
+          <TableComponent
+            {...props}
+            className={cn(theme.messages.message.markdown.table)}
+          />
+        ),
+        th: props => (
+          <TableHeaderCell
+            {...props}
+            className={cn(theme.messages.message.markdown.th)}
+          />
+        ),
+        td: props => (
+          <TableDataCell
+            {...props}
+            className={cn(theme.messages.message.markdown.td)}
+          />
+        ),
+        a: props => (
+          <a {...props} className={cn(theme.messages.message.markdown.a)} />
+        ),
+        p: props => (
+          <p {...props} className={cn(theme.messages.message.markdown.p)} />
+        ),
+        li: props => (
+          <li {...props} className={cn(theme.messages.message.markdown.li)} />
+        ),
+        ul: props => (
+          <ul {...props} className={cn(theme.messages.message.markdown.ul)} />
+        ),
+        ol: props => (
+          <ol {...props} className={cn(theme.messages.message.markdown.ol)} />
+        )
       }}
     >
       {children as string}
