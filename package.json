@@ -42,15 +42,16 @@
     "date-fns": "^4.1.0",
     "katex": "^0.16.11",
     "mdast-util-find-and-replace": "^3.0.1",
-    "motion": "^11.16.3",
+    "motion": "^12.4.2",
     "reablocks": "^8.7.4",
-    "react-markdown": "^9.0.1",
+    "react-markdown": "^9.0.3",
     "react-syntax-highlighter": "^15.5.0",
     "reakeys": "^2.0.3",
     "rehype-katex": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
-    "remark-youtube": "^1.3.2"
+    "remark-youtube": "^1.3.2",
+    "unified": "^11.0.5"
   },
   "peerDependencies": {
     "react": ">=18",

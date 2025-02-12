@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, ReactElement, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { parseCSV } from '@/utils/parseCSV';
 import DownloadIcon from '@/assets/download.svg?react';
 import PlaceholderIcon from '@/assets/copy.svg?react';
@@ -50,7 +50,7 @@ const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
   }, [url]);
 
   const toggleModal = () => {
-    setIsModalOpen((prev) => !prev);
+    setIsModalOpen(prev => !prev);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -73,7 +73,7 @@ const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
   const downloadCSV = () => {
     if (csvData.length === 0) return;
 
-    const csvContent = csvData.map((row) => row.join(',')).join('\n');
+    const csvContent = csvData.map(row => row.join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -129,14 +129,20 @@ const CSVFileRenderer: FC<CSVFileRendererProps> = ({ name, url, fileIcon }) => {
           {name && <figcaption className="ml-1">{name}</figcaption>}
         </div>
         <div className="csv-icon flex items-center gap-6">
-          <IconButton size="small" variant="text" onClick={downloadCSV}><DownloadIcon /></IconButton>
-          <IconButton size="small" variant="text" onClick={toggleModal}><PlaceholderIcon /></IconButton>
+          <IconButton size="small" variant="text" onClick={downloadCSV}>
+            <DownloadIcon />
+          </IconButton>
+          <IconButton size="small" variant="text" onClick={toggleModal}>
+            <PlaceholderIcon />
+          </IconButton>
         </div>
       </div>
 
       {error && <div className="error-message">{error}</div>}
 
-      {isLoading && !csvData && <div className="text-text-secondary">Loading...</div>}
+      {isLoading && !csvData && (
+        <div className="text-text-secondary">Loading...</div>
+      )}
 
       <div className="flex justify-between">
         {!error && csvData.length > 0 && renderTable(csvData, 6)}
