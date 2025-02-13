@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { cn } from 'reablocks';
 import { FC, PropsWithChildren, useContext } from 'react';
 import { Markdown } from '@/Markdown';
-import { PluggableList } from 'react-markdown/lib';
+import { Plugin } from 'unified';
 
 export interface MessageResponseProps extends PropsWithChildren {
   /**
@@ -23,11 +23,7 @@ export const MessageResponse: FC<MessageResponseProps> = ({
   isLoading,
   children
 }) => {
-  const {
-    theme,
-    isCompact,
-    remarkPlugins
-  } = useContext(ChatContext);
+  const { theme, isCompact, remarkPlugins } = useContext(ChatContext);
   const Comp = children ? Slot : 'div';
   return (
     <Comp
@@ -36,7 +32,7 @@ export const MessageResponse: FC<MessageResponseProps> = ({
     >
       {children || (
         <>
-          <Markdown remarkPlugins={remarkPlugins as PluggableList[]}>
+          <Markdown remarkPlugins={remarkPlugins as Plugin[]}>
             {response}
           </Markdown>
           {isLoading && (

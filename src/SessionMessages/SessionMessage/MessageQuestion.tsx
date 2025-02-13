@@ -3,7 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { Button, cn } from 'reablocks';
 import { FC, PropsWithChildren, useContext, useState } from 'react';
 import { Markdown } from '@/Markdown';
-import { PluggableList } from 'react-markdown/lib';
+import { Plugin } from 'unified';
 import { MessageFiles } from './MessageFiles';
 import { ConversationFile } from '@/types';
 
@@ -39,7 +39,7 @@ export const MessageQuestion: FC<MessageQuestionProps> = ({
       {children || (
         <>
           <MessageFiles files={files} />
-          <Markdown remarkPlugins={remarkPlugins as PluggableList[]}>
+          <Markdown remarkPlugins={remarkPlugins as Plugin[]}>
             {question}
           </Markdown>
           {isLong && !expanded && (

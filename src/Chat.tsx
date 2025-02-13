@@ -12,7 +12,7 @@ import { cn, useComponentTheme } from 'reablocks';
 import { Session } from './types';
 import { ChatTheme, chatTheme } from './theme';
 import { ChatContext, ChatViewType } from './ChatContext';
-import { PluggableList } from 'react-markdown/lib';
+import { Plugin } from 'unified';
 import { AnimatePresence } from 'motion/react';
 import { useDimensions } from './utils/useDimensions';
 import remarkGfm from 'remark-gfm';
@@ -57,7 +57,7 @@ export interface ChatProps extends PropsWithChildren {
   /**
    * Remark plugins to apply to the request/response.
    */
-  remarkPlugins?: PluggableList[];
+  remarkPlugins?: Plugin[];
 
   /**
    * Whether to display a loading state.
@@ -172,7 +172,7 @@ export const Chat: FC<ChatProps> = ({
     () => ({
       sessions,
       activeSession,
-      remarkPlugins: remarkPlugins as PluggableList[],
+      remarkPlugins: remarkPlugins as Plugin[],
       theme,
       disabled,
       isLoading,

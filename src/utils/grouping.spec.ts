@@ -8,15 +8,15 @@ describe('groupSessionsByDate', () => {
     id: `session-${daysAgo}`,
     createdAt: subDays(new Date(), daysAgo),
     updatedAt: subDays(new Date(), daysAgo),
-    name: `Test Session ${daysAgo} days ago`,
-    conversations: [],
+    title: `Test Session ${daysAgo} days ago`,
+    conversations: []
   });
 
   it('groups sessions correctly', () => {
     const sessions: Session[] = [
-      createSession(0),  // Today
-      createSession(1),  // Yesterday
-      createSession(3),  // Last Week
+      createSession(0), // Today
+      createSession(1), // Yesterday
+      createSession(3), // Last Week
       createSession(20), // Last Month
       createSession(60), // A few months ago
       createSession(400) // Last Year
@@ -47,7 +47,7 @@ describe('groupSessionsByDate', () => {
       createSession(0),
       createSession(0),
       createSession(1),
-      createSession(1),
+      createSession(1)
     ];
 
     const grouped = groupSessionsByDate(sessions);
@@ -62,9 +62,9 @@ describe('groupSessionsByDate', () => {
   it('sorts groups in the correct order', () => {
     const sessions: Session[] = [
       createSession(400), // Last Year
-      createSession(0),   // Today
-      createSession(60),  // A few months ago
-      createSession(1),   // Yesterday
+      createSession(0), // Today
+      createSession(60), // A few months ago
+      createSession(1) // Yesterday
     ];
 
     const grouped = groupSessionsByDate(sessions);
@@ -79,13 +79,21 @@ describe('groupSessionsByDate', () => {
     const sessions: Session[] = [
       { ...createSession(0), createdAt: new Date(now.getTime() - 1000) },
       { ...createSession(0), createdAt: now },
-      { ...createSession(1), createdAt: new Date(now.getTime() - 24 * 60 * 60 * 1000 - 1000) },
-      { ...createSession(1), createdAt: new Date(now.getTime() - 24 * 60 * 60 * 1000) },
+      {
+        ...createSession(1),
+        createdAt: new Date(now.getTime() - 24 * 60 * 60 * 1000 - 1000)
+      },
+      {
+        ...createSession(1),
+        createdAt: new Date(now.getTime() - 24 * 60 * 60 * 1000)
+      }
     ];
 
     const grouped = groupSessionsByDate(sessions);
 
     expect(grouped[0].sessions[0].createdAt).toEqual(now);
-    expect(grouped[1].sessions[0].createdAt).toEqual(new Date(now.getTime() - 24 * 60 * 60 * 1000));
+    expect(grouped[1].sessions[0].createdAt).toEqual(
+      new Date(now.getTime() - 24 * 60 * 60 * 1000)
+    );
   });
 });
