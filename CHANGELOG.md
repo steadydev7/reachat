@@ -1,3 +1,6 @@
+# 1.6.1 - 2/13/25
+- [chore] chore: update dependencies and fix vulnerabilities #44
+
 # 1.6.0
 - [feature] Add CSV Viewer to MessageFiles #42
 
