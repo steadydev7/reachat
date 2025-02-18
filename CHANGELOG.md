@@ -1,4 +1,9 @@
-# 1.6.1 - 2/13/25
+# 1.7.0 - 2/18/25
+- [feature] Add AppBar component for customizable headers
+- [feature] Add Templates support to predefined user prompts
+- [feature] Add ChatBubble component for floating chat interfaces
+
+# 1.6.1
 - [chore] chore: update dependencies and fix vulnerabilities #44
 
 # 1.6.0
